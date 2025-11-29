@@ -3,7 +3,6 @@ const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
 
-const path = require("path");
 
 
 const app = express();
@@ -19,12 +18,13 @@ const io = new Server(server, {
 });
 
 
-// Servir le build React
-app.use(express.static(path.join(__dirname, "../client/build")));
+const path = require("path");
 
-// Pour toutes les autres routes, renvoyer index.html (React gère le routing)
+// Servir les fichiers statiques du build Vite
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
 });
 
 
