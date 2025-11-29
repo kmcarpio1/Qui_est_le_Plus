@@ -21,7 +21,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*", // tout le monde peut se connecter, utile pour test
+    origin: "https://qui-est-le-plus.onrender.com", // tout le monde peut se connecter, utile pour test
     methods: ["GET", "POST"]
   }
 });
