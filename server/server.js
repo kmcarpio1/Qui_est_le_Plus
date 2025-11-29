@@ -5,14 +5,6 @@ const { Server } = require("socket.io");
 
 const path = require("path");
 
-// Servir le build React
-app.use(express.static(path.join(__dirname, "../client/build")));
-
-// Pour toutes les autres routes, renvoyer index.html (React gère le routing)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});
-
 
 const app = express();
 app.use(cors());
@@ -25,6 +17,16 @@ const io = new Server(server, {
     methods: ["GET", "POST"]
   }
 });
+
+
+// Servir le build React
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+// Pour toutes les autres routes, renvoyer index.html (React gère le routing)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
+
 
 
 // Rooms en mémoire
