@@ -114,23 +114,31 @@ io.on("connection", (socket) => {
 
     io.to(code).emit("roomState", getPublicRoomState(code, room));
   });
-
+  
   socket.on("vote", ({ code, userId, selectedPlayer, concerned }) => {
     const room = rooms[code];
     if (!room) return;
 
+    // 🚫 Empêche un joueur de voter plusieurs fois
+    if (room.votedUsers.has(userId)) {
+      return; // On ignore
+    }
+
+    // 👍 Premier vote = on l'accepte
     if (!concerned && selectedPlayer) {
       room.votes[selectedPlayer] = (room.votes[selectedPlayer] || 0) + 1;
     }
+
     room.votedUsers.add(userId);
 
-    // Quand tout le monde a voté → passer en mode "result"
+    // Quand tout le monde a voté → mode result
     if (room.votedUsers.size >= room.playerCount) {
       room.phase = "result";
     }
 
     io.to(code).emit("roomState", getPublicRoomState(code, room));
   });
+
 
   socket.on("nextQuestion", ({ code }) => {
     const room = rooms[code];
