@@ -161,7 +161,7 @@ export default function App() {
     "Qui est le plus empathique ?",
     "Qui est le plus boudeur ?",
     "Qui est le plus manipulateur ?",
-    "Qui est le plus brouillon ?"
+    "Qui est le plus brouillon ?",
     "Qui est le plus dormeur ?",
     "Qui est le plus ... ?"
   ]);
