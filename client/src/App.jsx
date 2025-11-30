@@ -424,8 +424,6 @@ function addJudged() {
     setHasVotedThisQuestion(true);
     setSelectedPlayer(null);
     setConcerned(false);
-
-    setMode("voted");
   }
 
   function startGame() {
@@ -529,16 +527,6 @@ function addJudged() {
           </div>
         </div>
       )}
-
-      {mode === "voted" && (
-        <div className="space-y-4 w-full">
-          <h2 className="text-4xl font-bold text-green-700">
-            Vote pris en compte !
-          </h2>
-          <p className="text-lg">En attente des autres joueurs…</p>
-        </div>
-      )}
-
 
       {/* --- GAME --- */}
       {mode === "game" && (
