@@ -16,6 +16,8 @@ import vote9 from "./assets/vote9.mp3";
 import vote10 from "./assets/vote10.mp3";
 import vote11 from "./assets/vote11.mp3";
 import vote12 from "./assets/vote12.mp3";
+import vote13 from "./assets/vote13.mp3";
+import vote14 from "./assets/vote14.mp3";
 
 import suspense from "./assets/suspense.mp3";
 import result from "./assets/result.mp3";
@@ -44,7 +46,7 @@ function stopAudio(audio) {
 export default function App() {
   const voteMusicList = [
     vote1, vote2, vote3, vote4, vote5, vote6,
-    vote7, vote8, vote9, vote10, vote11, vote12
+    vote7, vote8, vote9, vote10, vote11, vote12, vote13, vote14
   ];
 
   const SUSPENSE_MUSIC = suspense;
