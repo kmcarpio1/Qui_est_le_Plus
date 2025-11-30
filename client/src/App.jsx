@@ -262,34 +262,26 @@ export default function App() {
         setMode(room.phase);
       }
 
-      // Reset uniquement en phase 'game'
-      if (room.phase === "game") {
-        setHasVotedThisQuestion(false);
-      }
-      // Reset vote local
-      setHasVotedThisQuestion(false);
-
       // ---- GESTION MUSIQUE ----
       const phase = room.phase;
       const qIndex = room.currentQuestion || 0;
-
+  
       // Si on vient de changer de phase, on met à jour la musique
       if (phase === "game") {
-        // Musique de vote
         const key = `vote-${qIndex}`;
         if (key !== lastMusicKey) {
           setLastMusicKey(key);
           playVoteMusic(qIndex);
         }
-      }
-      else if (phase === "result") {
-        // Suspense puis résultat
+      } else if (phase === "result") {
         const key = `result-${qIndex}`;
         if (key !== lastMusicKey) {
           setLastMusicKey(key);
           playSuspenseThenResult();
         }
       }
+
+      // ✅ NE PLUS TOUCHER hasVotedThisQuestion ici !
     });
 
     return () => {
