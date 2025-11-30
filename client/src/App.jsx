@@ -161,7 +161,7 @@ export default function App() {
     "Qui est le plus manipulateur ?",
     "Qui est le plus brouillon ?"
     "Qui est le plus dormeur ?",
-    "Qui est le plus ... ?",
+    "Qui est le plus ... ?"
   ]);
   const [aQuiQuestions, setAQuiQuestions] = useState([
     "Qui est le plus susceptible de te prêter de l'argent ?",
