@@ -2,7 +2,31 @@ import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:3001");
+
+
+import vote1 from "./assets/vote1.mp3";
+import vote2 from "./assets/vote2.mp3";
+import vote3 from "./assets/vote3.mp3";
+import vote4 from "./assets/vote4.mp3";
+import vote5 from "./assets/vote5.mp3";
+import vote6 from "./assets/vote6.mp3";
+import vote7 from "./assets/vote7.mp3";
+import vote8 from "./assets/vote8.mp3";
+import vote9 from "./assets/vote9.mp3";
+import vote10 from "./assets/vote10.mp3";
+import vote11 from "./assets/vote11.mp3";
+import vote12 from "./assets/vote12.mp3";
+
+import suspense from "./assets/suspense.mp3";
+import result from "./assets/result.mp3";
+
+
+
+const SOCKET_URL = import.meta.env.PROD
+  ? "https://qui-est-le-plus.onrender.com" // Render
+  : "http://localhost:3001";              // Local dev
+
+const socket = io(SOCKET_URL);
 
 // === AUDIO - VARIABLES GLOBALES ===
 let voteAudio = null;
@@ -19,25 +43,16 @@ function stopAudio(audio) {
 
 export default function App() {
   const voteMusicList = [
-    "/vote1.mp3",
-    "/vote2.mp3",
-    "/vote3.mp3",
-    "/vote4.mp3",
-    "/vote5.mp3",
-    "/vote6.mp3",
-    "/vote7.mp3",
-    "/vote8.mp3",
-    "/vote9.mp3",
-    "/vote10.mp3",
-    "/vote11.mp3",
-    "/vote12.mp3",
-    // ajoute autant que tu veux
+    vote1, vote2, vote3, vote4, vote5, vote6,
+    vote7, vote8, vote9, vote10, vote11, vote12
   ];
-  const SUSPENSE_MUSIC = "/suspense.mp3";
-  const RESULT_MUSIC = "/result.mp3";
+
+  const SUSPENSE_MUSIC = suspense;
+  const RESULT_MUSIC = result;
   const MAX_VOLUME = 0.2;
   const [lastMusicKey, setLastMusicKey] = useState(null);
- 
+
+
   const [mode, setMode] = useState("home");
   const [gameMode, setGameMode] = useState("qui"); // 'qui' ou 'aqui'
   const [roomCode, setRoomCode] = useState("");
@@ -214,7 +229,7 @@ export default function App() {
       if (room.phase && mode !== "config") {
         setMode(room.phase);
       }
-      
+
       // Reset uniquement en phase 'game'
       if (room.phase === "game") {
         setHasVotedThisQuestion(false);

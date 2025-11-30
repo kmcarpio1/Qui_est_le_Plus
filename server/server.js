@@ -150,7 +150,8 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = 3001;
+// const PORT = 3001;
+const PORT = process.env.PORT || 3001; // Render donnera un port dynamique
 server.listen(PORT, () => {
   console.log("Serveur Socket.io sur port", PORT);
 });
